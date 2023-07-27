@@ -23,6 +23,6 @@ const MatiereSchema = new Schema({
         ref: 'Classe'
     }]
 });
-MatiereSchema.plugin(AutoIncrement, {inc_field: 'code'});
+//MatiereSchema.plugin(AutoIncrement, {inc_field: 'code'});
 
 module.exports = mongoose.model('Matiere', MatiereSchema);

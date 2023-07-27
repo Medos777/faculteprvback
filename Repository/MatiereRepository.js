@@ -1,4 +1,5 @@
 const Matiere = require('../model/Matiere');
+const Enseignant = require('../model/Enseignant');
 
 module.exports={
     async findAll(){
@@ -7,9 +8,17 @@ module.exports={
     async findById(id){
         return await Matiere.findById(id);
     },
-    async create(data){
-        const  catiere = new Matiere(data);
-        return await Matiere.save();
+    async create(matiereData) {
+        const matiere = new Matiere(matiereData);
+        const createdMatiere = await matiere.save();
+
+        const enseignants = await Enseignant.find({ _id: { $in: createdMatiere.enseignants } });
+        enseignants.forEach(async (enseignant) => {
+            enseignant.matieres.push(createdMatiere._id);
+            await enseignant.save();
+        });
+
+        return createdMatiere;
     },
     async update (id, data){
         return await Matiere.findByIdAndUpdate(id, data, {new : true});
@@ -18,4 +27,5 @@ module.exports={
     async delete(id){
         return await Matiere.findByIdAndRemove(id);
     }
+
 }
