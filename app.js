@@ -4,6 +4,8 @@ var etudiantRoutes = require('./routes/EtudiantRoutes');
 var classeRoutes = require('./routes/ClasseRoutes');
 var matiereRoutes = require('./routes/MatiereRoutes');
 var enseignantRoutes = require('./routes/EnseignantRoutes');
+var adminRoutes = require('./routes/AdminRoutes');
+var facturesRoutes = require('./routes/FactureRoutes');
 const mongoose = require("mongoose");
 const app = express();
 app.use(bodyParser.json());
@@ -22,6 +24,8 @@ app.use('/api',etudiantRoutes);
 app.use('/api',classeRoutes);
 app.use('/api',enseignantRoutes);
 app.use('/api',matiereRoutes);
+app.use('/api',adminRoutes);
+app.use('/api',facturesRoutes);
 app.use((err,req,res,next) =>{
     console.error(err);
     res.status(500).json({

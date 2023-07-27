@@ -5,16 +5,25 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Classe = require('./Classe')
 const EtudiantSchema = new Schema(
     {
-            matricule : {type: Number, required: true,unique:true},
+            matricule : {type: String, required: false,unique:true},
             nom       :{type: String, required: true },
             email     :{type: String,required:true},
-            adresse       :{type: String, required: true },
+        password     :{type: String,required:true},
+        adresse       :{type: String, required: true },
             tel       :{type: String, required: true },
-            classe: { type: Schema.Types.ObjectId, ref: 'Classe',required:false }
+            classe: { type: Schema.Types.ObjectId, ref: 'Classe',required:false },
+            role:{type: String,required:false,default:"etudiant"}
 
 
 
     });
-EtudiantSchema.plugin(AutoIncrement, {inc_field: 'matricule'});
-
+EtudiantSchema.pre('save', async function(next) {
+    if (!this.matricule) {
+        const randomNumber = Math.floor(Math.random() * 6);
+        const codeString = "Etudiant"+this.nom +this.classe +  randomNumber;
+        const code = codeString.replace(/[^a-zA-Z0-9]/gi, '').toLowerCase();
+        this.matricule = code;
+    }
+    next();
+});
 module.exports = mongoose.model('Etudiant', EtudiantSchema);

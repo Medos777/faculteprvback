@@ -8,7 +8,7 @@ module.exports ={
     async findById(req,res,next){
         try {
             const enseignant= await EnseignantService.findById(req.params.id);
-            res.json(matiere);
+            res.json(enseignant);
         }catch (error){
             next(error);
         }
