@@ -15,9 +15,9 @@ const ReleveNoteSchema = new Schema({
 
 });
 ReleveNoteSchema.pre('save', function (next) {
-    const sum = this.courses.reduce((total, course) => total + course.grade, 0);
-    const count = this.courses.length;
-    this.average = sum / count;
+    const sum = this.classe.reduce((total, course) => total + course.note, 0);
+    const count = this.classe.length;
+    this.moyenne = sum / count;
     next();
 });
 
