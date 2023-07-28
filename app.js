@@ -5,6 +5,7 @@ var classeRoutes = require('./routes/ClasseRoutes');
 var matiereRoutes = require('./routes/MatiereRoutes');
 var enseignantRoutes = require('./routes/EnseignantRoutes');
 var adminRoutes = require('./routes/AdminRoutes');
+const authRoutes = require('./routes/AuthRoutes');
 var facturesRoutes = require('./routes/FactureRoutes');
 const mongoose = require("mongoose");
 const app = express();
@@ -20,6 +21,7 @@ db.on('error',console.error.bind(console,'erreur de connection  a mongodb'));
 db.once('open',() => {
     console.log('connecte a mongodb');
 });
+app.use('/api',authRoutes);
 app.use('/api',etudiantRoutes);
 app.use('/api',classeRoutes);
 app.use('/api',enseignantRoutes);

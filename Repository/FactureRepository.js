@@ -18,9 +18,9 @@ module.exports = {
         return await Facture.findByIdAndRemove(id);
     },
 
-    async create(data){
-
-        const  facture = new Facture(data);
+    async create(data) {
+        const etudiantId = data.etudiant.trim();
+        const facture = new Facture({ ...data, etudiant: etudiantId });
         return await facture.save();
     },
     async getFactureByEtudiant(EtudiantId){

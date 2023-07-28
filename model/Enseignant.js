@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-
 const EnseignantSchema = new Schema(
     {
         matricule : {type: String, required: false,unique:true},
@@ -27,6 +27,13 @@ EnseignantSchema.pre('save', async function(next) {
         const codeString = "Enseignant"+this.nom +  randomNumber;
         const code = codeString.replace(/[^a-zA-Z0-9]/gi, '').toLowerCase();
         this.matricule = code;
+    }
+    next();
+});
+EnseignantSchema.pre('save', async function(next) {
+    const enseignant = this;
+    if (enseignant.isModified('password')) {
+        enseignant.password = await bcrypt.hash(enseignant.password, 10);
     }
     next();
 });
