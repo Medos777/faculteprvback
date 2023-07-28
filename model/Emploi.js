@@ -9,28 +9,35 @@ const EmploiSchema = new Schema({
     jour: {
         type: String,
         required: true,
-        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        enum: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
     },
     heureDebut: {
-        type: Date,
+        type: Number,
         required: true,
         min: 0,
         max: 23,
-        set: hoursToMinutes,
+        //set: hoursToMinutes,
     },
     HeureFin: {
-        type: Date,
+        type: Number,
         required: true,
         min: 0,
         max: 23,
-        set: hoursToMinutes,
+       // set: hoursToMinutes,
     },
     matiere: { type: Schema.Types.ObjectId, ref: 'Matiere',required:true },
     enseignant: { type: Schema.Types.ObjectId, ref: 'Enseignant',required:false },
 
 });
-function hoursToMinutes(value) {
+/*function hoursToMinutes(value) {
     const [hours, minutes] = value.split(':').map(Number);
     return hours * 60 + minutes;
 }
+EmploiSchema.statics.hoursToMinutes = function(hours) {
+    if (typeof hours === 'number') {
+        hours = hours.toString();
+    }
+    var parts = hours.split(':');
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+};*/
 module.exports = mongoose.model('Emploi', EmploiSchema);

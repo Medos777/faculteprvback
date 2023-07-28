@@ -7,6 +7,7 @@ var enseignantRoutes = require('./routes/EnseignantRoutes');
 var adminRoutes = require('./routes/AdminRoutes');
 const authRoutes = require('./routes/AuthRoutes');
 var facturesRoutes = require('./routes/FactureRoutes');
+var emploiRoutes = require('./routes/EmploiRoutes');
 const mongoose = require("mongoose");
 const app = express();
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use('/api',enseignantRoutes);
 app.use('/api',matiereRoutes);
 app.use('/api',adminRoutes);
 app.use('/api',facturesRoutes);
+app.use('/api',emploiRoutes);
 app.use((err,req,res,next) =>{
     console.error(err);
     res.status(500).json({
