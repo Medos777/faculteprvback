@@ -8,6 +8,8 @@ var adminRoutes = require('./routes/AdminRoutes');
 const authRoutes = require('./routes/AuthRoutes');
 var facturesRoutes = require('./routes/FactureRoutes');
 var emploiRoutes = require('./routes/EmploiRoutes');
+var releveNoteRoutes = require('./routes/ReleveNoteRoutes');
+var feedbackRoutes = require('./routes/FeedbackRoutes');
 const mongoose = require("mongoose");
 const app = express();
 app.use(bodyParser.json());
@@ -30,6 +32,8 @@ app.use('/api',matiereRoutes);
 app.use('/api',adminRoutes);
 app.use('/api',facturesRoutes);
 app.use('/api',emploiRoutes);
+app.use('/api',releveNoteRoutes);
+app.use('/api',feedbackRoutes);
 app.use((err,req,res,next) =>{
     console.error(err);
     res.status(500).json({

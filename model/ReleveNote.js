@@ -1,17 +1,19 @@
 const mongoose = require('mongoose');
+const Etudiant = require('./Classe');
+const Matiere = require('./Matiere');
 const Schema = mongoose.Schema;
 
 const ReleveNoteSchema = new Schema({
-    studentId: { type: Schema.Types.ObjectId, ref: 'Student', required: true },
+    EtudiantId: { type: Schema.Types.ObjectId, ref: 'Etudiant', required: true },
     classe: [
         {
-            matiere: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+            matiere: { type: Schema.Types.ObjectId, ref: 'Matiere', required: true },
             note: { type: Number, required: true, min: 0, max: 100 },
-            anneAcadémique: { type: Number, required: true, min: 1900, max: 2100 },
+            anneAcademique: { type: Number, required: true, min: 1900, max: 2100 },
         },
     ],
     semester: { type: Number, required: true, min: 1, max: 8 },
-    moyenne: { type: Number, required: true },
+    moyenne: { type: Number, required: false },
 
 });
 ReleveNoteSchema.pre('save', function (next) {

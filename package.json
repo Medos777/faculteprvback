@@ -1,6 +1,7 @@
 {
   "name": "stageback",
   "version": "0.0.0",
+  "owner":"medaminegh",
   "private": true,
   "scripts": {
     "start": "node app.js"

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const bcrypt = require('bcryptjs');
 
-const Classe = require('./Classe')
+const Classe = require('./Classe');
 const EtudiantSchema = new Schema(
     {
             matricule : {type: String, required: false,unique:true},
