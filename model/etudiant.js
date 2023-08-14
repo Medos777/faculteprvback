@@ -34,4 +34,11 @@ EtudiantSchema.pre('save', async function(next) {
     }
     next();
 });
+EtudiantSchema.virtual('classeName').get(function () {
+    return this.classe ? this.classe.name : '';
+});
+
+// Ensure that the virtual property is included when converting the document to JSON
+EtudiantSchema.set('toJSON', { virtuals: true });
+
 module.exports = mongoose.model('Etudiant', EtudiantSchema);

@@ -1,7 +1,15 @@
 const Classe = require('../model/Classe');
 module.exports={
     async findAll(){
-        return await Classe.find();
+        try {
+            const classes = await Classe.find().populate('etudiants', 'nom');
+            return classes.map((classe) => {
+                const etudiantNames = classe.etudiants.map((etudiant) => etudiant.nom);
+                return { ...classe.toObject(), etudiants: etudiantNames };
+            });
+        } catch (error) {
+            console.error(error);
+        }
     },
     async findById(id){
         return await Classe.findById(id);

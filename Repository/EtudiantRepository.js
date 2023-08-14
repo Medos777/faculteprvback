@@ -2,9 +2,12 @@ const Etudiant = require('../model/etudiant');
 const Classe = require('../model/Classe');
 
 module.exports = {
-    async findAll(){
-        return await Etudiant.find();
-
+    async findAll() {
+        try {
+            return await Etudiant.find().populate('classe', 'name');
+        } catch (error) {
+            console.error(error);
+        }
     },
     async findById(id){
         return await Etudiant.findById(id);
@@ -37,12 +40,16 @@ module.exports = {
                 if (!classe) {
                     throw new Error(`Classe with ID ${classeId} not found`);
                 }
-                etudiant.classe = classeId;
+                etudiant.classe = classe._id;
                 classe.etudiants.push(etudiant._id);
                 await classe.save();
             }
             await etudiant.save();
-            return etudiant;
+
+            // Fetch the populated etudiant object
+            const populatedEtudiant = await Etudiant.findById(etudiant._id).populate('classe');
+
+            return populatedEtudiant;
         } catch (error) {
             console.error(error);
         }

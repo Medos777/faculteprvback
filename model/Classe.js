@@ -9,6 +9,6 @@ const ClassSchema = new Schema({
     name: { type: String, required: true },
     etudiants: [{ type: Schema.Types.ObjectId, ref: 'Etudiant' }],
    // matieres: [{type: Schema.Types.ObjectId, ref: 'Matiere'}],
-    emplois: { type: Schema.Types.ObjectId, ref: 'Emploi',required:true },
+    emplois: { type: Schema.Types.ObjectId, ref: 'Emploi',required:false },
 });
 module.exports = mongoose.model('Classe', ClassSchema);
