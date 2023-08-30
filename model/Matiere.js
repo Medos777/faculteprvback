@@ -13,15 +13,7 @@ const MatiereSchema = new Schema({
     nom: {
         type: String,
         required: true
-    },
-    enseignants: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Enseignant'
-    }],
-    classes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Classe'
-    }]
+    }
 });
 MatiereSchema.pre('save', async function(next) {
     if (!this.code) {

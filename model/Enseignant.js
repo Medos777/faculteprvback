@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 const AutoIncrement = require('mongoose-sequence')(mongoose);
+const Cours = require('./Cours')
 const EnseignantSchema = new Schema(
     {
         matricule : {type: String, required: false,unique:true},
@@ -10,11 +11,10 @@ const EnseignantSchema = new Schema(
         password     :{type: String,required:true},
         adresse       :{type: String, required: true },
         tel       :{type: String, required: true },
-            matieres: [{
-                    type: Schema.Types.ObjectId,
-                    ref: 'Matiere'
-            }],
-        role:{type: String,required:false,default:"enseignant"}
+            cours: [{type: Schema.Types.ObjectId, ref: 'Cours'}],
+        role:{type: String,required:false,default:"enseignant"},
+        photo: { type: Buffer, required: false }
+
 
 
 
@@ -37,4 +37,5 @@ EnseignantSchema.pre('save', async function(next) {
     }
     next();
 });
+
 module.exports = mongoose.model('Enseignant', EnseignantSchema);

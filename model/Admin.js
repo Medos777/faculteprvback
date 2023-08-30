@@ -13,7 +13,9 @@ const AdminSchema = new Schema(
         password     :{type: String,required:true},
         adresse       :{type: String, required: true },
         tel       :{type: String, required: true },
-            role:{type: String,required:false,default:"admin"}
+            role:{type: String,required:false,default:"admin"},
+            photo: { type: Buffer, required: false }
+
 
 
 

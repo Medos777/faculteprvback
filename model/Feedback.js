@@ -6,8 +6,6 @@ const Schema = mongoose.Schema;
 
 const FeedbackSchema = new Schema({
     etudiant: { type: Schema.Types.ObjectId, ref: 'Etudiant', required: true },
-    classe: { type: Schema.Types.ObjectId, ref: 'Classe', required: true },
-    matiere: { type: Schema.Types.ObjectId, ref: 'Matiere', required: true },
     feedbackText: { type: String, required: true },
     feedbackDate: { type: Date, default: Date.now },
 });

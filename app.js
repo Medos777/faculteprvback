@@ -12,6 +12,7 @@ const authRoutes = require('./routes/AuthRoutes');
 const facturesRoutes = require('./routes/FactureRoutes');
 const emploiRoutes = require('./routes/EmploiRoutes');
 const releveNoteRoutes = require('./routes/ReleveNoteRoutes');
+const coursRoutes = require('./routes/CoursRoutes');
 const feedbackRoutes = require('./routes/FeedbackRoutes');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use('/api', facturesRoutes);
 app.use('/api', emploiRoutes);
 app.use('/api', releveNoteRoutes);
 app.use('/api', feedbackRoutes);
+app.use('/api', coursRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err);

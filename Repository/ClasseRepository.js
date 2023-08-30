@@ -39,15 +39,5 @@ module.exports={
             console.error(error);
         }
     },
-    /*async getEtudiantsByClasse(classeId){
-        try {
-            console.log(classeId);
-            const classe = await Classe.findById(classeId).populate('etudiants');
-            console.log(classe);
 
-            return classe.etudiants;
-        } catch (error) {
-            console.error(error);
-        }
-    }*/
 }

@@ -13,7 +13,9 @@ const EtudiantSchema = new Schema(
         adresse       :{type: String, required: true },
             tel       :{type: String, required: true },
             classe: { type: Schema.Types.ObjectId, ref: 'Classe',required:false },
-            role:{type: String,required:false,default:"etudiant"}
+            role:{type: String,required:false,default:"etudiant"},
+        photo: { type: Buffer, required: false }
+
 
 
 
