@@ -1,19 +1,22 @@
-const FeedbackRepository= require('../Repository/FeedbackRepository');
+const FactureRepository = require('../Repository/FactureRepository');
 module.exports={
         async findAll() {
-            return await FeedbackRepository.findAll();
+            return await FactureRepository.findAll();
         },
         async findById(id) {
-            return await FeedbackRepository.findById(id);
+            return await FactureRepository.findById(id);
 
         },
         async create(data) {
-            return await FeedbackRepository.create(data);
+            return await FactureRepository.create(data);
         },
         async update(id, data) {
-            return await FeedbackRepository.update(id, data);
+            return await FactureRepository.update(id, data);
         },
         async delete(id) {
-            return await FeedbackRepository.delete(id);
+            return await FactureRepository.delete(id);
+        },
+        async findByEtudiantId(EtudiantId){
+            return await FactureRepository.getFactureByEtudiant(EtudiantId);
         }
     }

@@ -10,6 +10,7 @@ module.exports = {
 
     },
 
+
     async update (id, data){
         return await Facture.findByIdAndUpdate(id, data, {new : true});
 
