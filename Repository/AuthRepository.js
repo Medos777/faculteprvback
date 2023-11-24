@@ -33,7 +33,7 @@ module.exports={
         }
 
         const token = jwt.sign({ userId: user._id, role ,UserNom: user.nom, UserEmail: user.email},'your-secret-key', {
-            expiresIn: 60 * 60 * 100,
+            expiresIn: 60 * 60 ,
         });
         console.log("the token is"+token);
         return { token };

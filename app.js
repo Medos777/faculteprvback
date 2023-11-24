@@ -13,6 +13,7 @@ const facturesRoutes = require('./routes/FactureRoutes');
 const emploiRoutes = require('./routes/EmploiRoutes');
 const releveNoteRoutes = require('./routes/ReleveNoteRoutes');
 const coursRoutes = require('./routes/CoursRoutes');
+const chatRoutes = require('./routes/ChatRoutes');
 const feedbackRoutes = require('./routes/FeedbackRoutes');
 const loginRoutes = require('./routes/LoginRoutes');
 const reclamationRoutes = require('./routes/ReclamationRoutes');
@@ -44,6 +45,7 @@ app.use('/api', feedbackRoutes);
 app.use('/api', coursRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', reclamationRoutes);
+app.use('/api', chatRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err);
