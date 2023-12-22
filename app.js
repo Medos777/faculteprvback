@@ -14,10 +14,10 @@ const emploiRoutes = require('./routes/EmploiRoutes');
 const releveNoteRoutes = require('./routes/ReleveNoteRoutes');
 const coursRoutes = require('./routes/CoursRoutes');
 const chatRoutes = require('./routes/ChatRoutes');
+const summayRoutes = require('./routes/SummayRoutes');
 const feedbackRoutes = require('./routes/FeedbackRoutes');
 const loginRoutes = require('./routes/LoginRoutes');
 const reclamationRoutes = require('./routes/ReclamationRoutes');
-
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
@@ -46,6 +46,8 @@ app.use('/api', coursRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', reclamationRoutes);
 app.use('/api', chatRoutes);
+//app.use('/api', chatRoutes);
+app.use('/api', summayRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err);
